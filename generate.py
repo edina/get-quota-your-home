@@ -69,6 +69,8 @@ def get_quotas():
     ]).decode().strip()
     quotas = {}
     for line in output.split('\n'):
+        if len(line) < 1:
+            continue
         path, used, soft, hard, warn, grace = line.split()
         # Everything here is in kb, since that's what xfs_quota reports things in
         quotas[path] = {
